@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cafeapp-deployment
+  labels:
+    app: cafeapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cafeapp
+  template:
+    metadata:
+      labels:
+        app: cafeapp
+    spec:
+      containers:
+        - name: cafeapp
+          image: amulya2503/mompopcafeapp:v1
+          ports:
+            - containerPort: 80
+          env:
+            - name: MYSQL_HOST
+              value: "mysql-service"
+            - name: MYSQL_DATABASE
+              value: "mom_pop_db"
+            - name: MYSQL_ROOT_PASSWORD
+              value: "Msois@123"
